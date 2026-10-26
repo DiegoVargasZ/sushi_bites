@@ -50,13 +50,11 @@ La página de Ubicaciones incorpora Central, Hupermall y Quillacollo, con fotos 
 
 El formulario de Colaboraciones reproduce los campos de la referencia: nombre, correo, teléfono, ciudad y país, plataformas, links y propuesta. Valida los campos obligatorios y el correo, prepara una vista previa y permite abrir la aplicación de correo con destinatario `collabs@sushibitesbolivia.com`, asunto y cuerpo completos. El visitante envía el mensaje desde su correo. También puede copiar la propuesta. La página no registra datos en un servidor ni declara envíos completados; no se enviaron mensajes durante las pruebas.
 
-## Sushi interactivo
+## Portada
 
-Escena 3D interactiva en WebGL 2, con texturas de materiales creadas con Imagegen: vetas de salmón, fibras de nori, pulpa de palta y arroz. El arroz tiene granos individuales con distribución irregular; los cortes del relleno tienen contornos suavizados y el nori tiene pliegues y un borde fino. Incluye reflejos GGX, brillo húmedo, iluminación de estudio, sombras proyectadas con penumbra variable y plato cerámico curvo. El acabado crocante añade 2.300 migas de panko y solo se dibuja al seleccionarlo.
+La portada presenta una fotografía editorial cenital servida en WebP, con dos tamaños (768 y 1536 píxeles) para que el móvil descargue solo lo necesario. La imagen se marca con `fetchpriority="high"` por ser el elemento visible más grande.
 
-El giro automático es lento y conserva el sushi armado. Arrastra para girarlo; con ratón también puedes inclinar la vista arrastrando verticalmente. Las cuatro flechas permiten girar e inclinar con teclado. El control de armado separa las capas y pausa la reproducción; al reanudar se arma suavemente y continúa girando sin saltar de orientación. Respeta movimiento reducido y se detiene fuera de pantalla. Muestra una foto alternativa si no hay WebGL o se pierde el contexto gráfico.
-
-El atlas optimizado de 1024 × 1024 está incluido en `dist/assets/sushi-material-atlas.js` como WebP embebido (aproximadamente 361 KB), para que las texturas funcionen también al abrir el HTML directamente y sin conexión. El original y el prompt exacto se conservan en `src/assets/sushi-material-atlas.png` y `src/assets/sushi-material-atlas.md`. La escena no descarga modelos ni bibliotecas 3D externas. Las texturas son ilustrativas; las fotografías de la carta siguen siendo las originales del restaurante.
+La escena 3D en WebGL que ocupaba antes este espacio se retiró el 26 de octubre de 2026 junto con su atlas de texturas, lo que elimina unos 400 KB de JavaScript de la portada.
 
 ## Archivos
 
@@ -66,9 +64,6 @@ El atlas optimizado de 1024 × 1024 está incluido en `dist/assets/sushi-materia
 - `dist/order-data.js`: sucursales, direcciones y números de WhatsApp para pedidos.
 - `dist/delivery-map.js`: selección de punto de entrega y geolocalización.
 - `dist/vendor/maplibre/`: biblioteca activa del mapa, estilos y licencia BSD.
-- `dist/sushi-3d.js`: geometría, materiales y animación.
-- `dist/assets/sushi-material-atlas.js`: texturas locales del sushi 3D, compatibles con archivos HTML abiertos directamente.
-- `src/assets/sushi-material-atlas.png` y `.md`: atlas original y prompt de Imagegen.
 - `dist/index.html` y `dist/styles.css`: contenido y presentación.
 - `dist/menu.html`, `ubicaciones.html`, `nosotros.html`, `preguntas.html` y `colaboraciones.html`: páginas independientes.
 - `dist/collaborations.js`: validación y preparación de propuestas por correo.

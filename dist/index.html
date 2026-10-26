@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#111111">
   <meta name="description" content="Ehomakis crocantes, burgers de arroz y fusiones Nikkei de Sushi Bites en Bolivia.">
-  <meta property="og:title" content="Buen sushi. Buen mood. — Sushi Bites">
+  <meta property="og:title" content="Buen sushi. Buen mood. · Sushi Bites">
   <meta property="og:description" content="Ehomakis crocantes, burgers de arroz y fusiones Nikkei de Sushi Bites en Bolivia.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sushi Bites">
   <meta property="og:locale" content="es_BO">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Buen sushi. Buen mood. — Sushi Bites">
+  <meta name="twitter:title" content="Buen sushi. Buen mood. · Sushi Bites">
   <meta name="twitter:description" content="Ehomakis crocantes, burgers de arroz y fusiones Nikkei de Sushi Bites en Bolivia.">
   <meta name="robots" content="noindex, follow">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Restaurant","name":"Sushi Bites Central","telephone":"+59169447617","address":{"@type":"PostalAddress","streetAddress":"Av. Santa Cruz y Julio Rodriguez","addressLocality":"Cochabamba","addressRegion":"Cochabamba","addressCountry":"BO"},"servesCuisine":["Japonesa","Nikkei","Sushi"],"currenciesAccepted":"BOB"},{"@type":"Restaurant","name":"Sushi Bites Hupermall","telephone":"+59175060007","address":{"@type":"PostalAddress","streetAddress":"Av. Pando esq. Portales","addressLocality":"Cochabamba","addressRegion":"Cochabamba","addressCountry":"BO"},"servesCuisine":["Japonesa","Nikkei","Sushi"],"currenciesAccepted":"BOB"},{"@type":"Restaurant","name":"Sushi Bites Quillacollo","telephone":"+59162666889","address":{"@type":"PostalAddress","streetAddress":"Av. Calle Blanco Galindo","addressLocality":"Quillacollo","addressRegion":"Cochabamba","addressCountry":"BO"},"servesCuisine":["Japonesa","Nikkei","Sushi"],"currenciesAccepted":"BOB"}]}</script>
-  <title>Buen sushi. Buen mood. — Sushi Bites</title>
+  <title>Buen sushi. Buen mood. · Sushi Bites</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon-sushi-bites.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,8 +26,7 @@
   <script src="order-data.js" defer></script>
   <script src="delivery-map.js" defer></script>
   <script src="app.js" defer></script>
-  <script src="assets/sushi-material-atlas.js" defer></script>
-  <script src="sushi-3d.js" defer></script>
+  
 </head>
 <body data-page="inicio">
   <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -61,21 +60,11 @@
         <div class="hero-actions"><a href="menu.html" class="button">Encuentra tu roll <svg><use href="#i-arrow"/></svg></a><a href="nosotros.html" class="text-link">Conoce nuestra esencia <span>↗</span></a></div>
         <div class="hero-signature"><span class="signature-icon"><svg><use href="#i-roll"/></svg></span><span>Hecho a mano.<br><strong>Disfrutado a tu manera.</strong></span><span class="signature-line"></span><span class="signature-japanese" lang="ja" aria-hidden="true">いただきます</span></div>
       </div>
-      <div class="hero-art roll-experience" id="roll-experience">
-        <div class="roll-scene-heading"><span class="eyebrow">EL ANTOJO ESTÁ EN LOS DETALLES.</span><span class="scene-live"><span></span> FURAI · EN 3D</span></div>
-        <div class="roll-stage">
-          <div class="roll-halo" aria-hidden="true"></div>
+      <div class="hero-art">
+        <div class="hero-stage">
           <span class="hero-japanese" lang="ja" aria-hidden="true">ひとくちの幸せ</span>
-          <img class="roll-fallback" src="assets/hero-sushi.webp" srcset="assets/hero-sushi-768.webp 768w, assets/hero-sushi.webp 1536w" sizes="(max-width: 740px) 110vw, 770px" alt="Sushi artesanal de salmón, arroz y alga nori" width="1536" height="1024" fetchpriority="high" decoding="async">
-          <canvas id="sushi-canvas" role="img" aria-label="Sushi en 3D con nori, arroz, salmón, palta y queso crema. Arrastra para girarlo; con las flechas puedes girar e inclinar la vista."></canvas>
-          <div class="roll-annotation" aria-hidden="true"><span class="annotation-index">01</span><span class="annotation-line"></span><span id="roll-ingredient">Todo empieza con el nori.</span></div>
-          <span class="roll-ground-label" aria-hidden="true">HECHO A MANO. HASTA EL ÚLTIMO GRANO.</span>
-        </div>
-        <div class="roll-controls" hidden>
-          <div class="roll-view-tools"><div class="roll-finishes" role="group" aria-label="Acabado del sushi"><button type="button" data-finish="0" aria-pressed="true">Nori clásico</button><button type="button" data-finish="1" aria-pressed="false">Crocante</button></div><span>↔ Arrastra para girar</span></div>
-          <div class="roll-control-heading"><span>DEL INGREDIENTE AL ANTOJO</span><button type="button" id="roll-play" aria-label="Pausar animación del sushi" aria-pressed="true"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></svg><span>Pausar</span></button></div>
-          <label class="sr-only" for="roll-progress">Progreso del armado del sushi</label><input id="roll-progress" type="range" min="0" max="100" step="1" value="0" aria-valuetext="Sushi desarmado">
-          <div class="roll-step-labels" aria-hidden="true"><span class="is-current">01 · Nori</span><span>02 · Arroz</span><span>03 · Relleno</span><span>04 · ¡A disfrutar!</span></div>
+          <img class="hero-photo" src="assets/hero-sushi.webp" srcset="assets/hero-sushi-768.webp 768w, assets/hero-sushi.webp 1536w" sizes="(max-width: 740px) 110vw, 770px" alt="Sushi artesanal de salmón, arroz y alga nori" width="1536" height="1024" fetchpriority="high" decoding="async">
+          <span class="hero-ground-label" aria-hidden="true">HECHO A MANO. HASTA EL ÚLTIMO GRANO.</span>
         </div>
       </div>
       <a class="scroll-link" href="menu.html"><span>DESLIZA. SE PONE MEJOR.</span><span class="scroll-circle">↓</span></a>

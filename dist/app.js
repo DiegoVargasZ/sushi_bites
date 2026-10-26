@@ -209,7 +209,7 @@ function prepareOrder(){
   const total=entries.reduce((n,p)=>n+p.price*cart[p.id],0);
   const summary=[`¡Hola, ${branch.name}! Quisiera hacer este pedido:`,"",`Sucursal: ${branch.name}`,`Modalidad: ${method==="delivery"?"Delivery a domicilio":"Para recoger en sucursal"}`,
     ...(method==="delivery"?[`Dirección de entrega: ${addressInput.value.trim()}`,`Ubicación en el mapa: ${deliveryLocation.getUrl()}`,...(reference?[`Referencia: ${reference}`]:[])]:[`Recojo en: ${branch.address}`]),
-    "",...entries.map(p=>`${cart[p.id]} × ${p.name} (${p.serving}) — ${money(p.price*cart[p.id])}`),"",`Subtotal de productos: ${money(total)}`,...(notes?[`Notas: ${notes}`]:[]),"",
+    "",...entries.map(p=>`${cart[p.id]} × ${p.name} (${p.serving}) · ${money(p.price*cart[p.id])}`),"",`Subtotal de productos: ${money(total)}`,...(notes?[`Notas: ${notes}`]:[]),"",
     method==="delivery"?"Por favor, confirmen cobertura y costo de delivery, disponibilidad, total final y forma de pago.":"Por favor, confirmen disponibilidad, hora de recojo, total final y forma de pago."
   ].join("\n");
   return {branch,summary};

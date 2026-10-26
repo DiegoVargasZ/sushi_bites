@@ -4,13 +4,11 @@ Negro `#111111`, rojo `#f34343` y blanco `#fafafa`, tipografía DM Sans con Inst
 
 La identidad usa el logo oficial facilitado por el propietario, con lettering blanco y espiral roja, en la cabecera y el pie de todas las páginas. Se conserva el WebP original con transparencia y proporciones intactas. Para el ícono del navegador se encuadra exclusivamente la espiral original mediante un SVG autónomo, sin redibujarla. El logo se adapta a móvil y escritorio.
 
-## Sushi 3D
+## Portada
 
-La portada presenta un sushi 3D con materiales texturados: salmón con membranas de grasa, nori fibroso y oscuro, palta con gradiente verde y arroz de granos individuales. El atlas de materiales fue generado con la herramienta integrada Imagegen, conservado en `src/assets/sushi-material-atlas.png` y optimizado a WebP de 1024 × 1024 dentro de un archivo JavaScript local para admitir la apertura directa del HTML. El prompt exacto está en `src/assets/sushi-material-atlas.md`. No se reemplazaron las fotografías de productos.
+La portada se apoya en la fotografía cenital `hero-sushi.webp`, acompañada de la caligrafía vertical ひとくちの幸せ y del rótulo «HECHO A MANO. HASTA EL ÚLTIMO GRANO.». La composición mantiene el encuadre amplio y el fondo casi negro de la dirección general.
 
-La geometría del nori tiene pliegues y un borde fino; el arroz se distribuye con separación irregular y los contornos del relleno se suavizan con curvas. La iluminación usa reflejos GGX, luz principal cálida, relleno frío, contraluz y reflejos de luces de estudio. Un mapa de profundidad produce sombras entre ingredientes y sobre un plato cerámico de perfil curvo, con penumbra variable. El acabado crocante incorpora 2.300 migas y se dibuja únicamente cuando está seleccionado.
-
-La animación principal conserva el sushi armado y lo gira lentamente. El control manual permite separar las capas y reanudar su armado. Se puede girar e inclinar mediante ratón o teclado; en pantallas táctiles, el gesto horizontal gira el sushi y se conserva el desplazamiento vertical de la página. Incluye pausa, movimiento reducido y suspensión fuera de pantalla; mantiene una foto alternativa sin WebGL o tras perder el contexto. No descarga modelos ni librerías 3D externas.
+Entre octubre de 2026 y el 26 de octubre de 2026 este espacio lo ocupó una escena 3D en WebGL con un atlas de materiales propio. Se retiró a petición del propietario: la fotografía editorial ya transmitía la misma idea sin costar unos 400 KB de JavaScript en la primera carga. La fotografía que ahora se ve es la misma que la escena usaba como alternativa cuando no había WebGL.
 
 ## Imágenes
 
@@ -20,7 +18,7 @@ La web se divide en seis páginas. Colaboraciones conserva los campos de la capt
 
 El selector de entrega usa MapLibre GL JS 5.24.0 y OpenFreeMap con el estilo Liberty. Mantiene calles y nombres legibles en una superficie clara, pin rojo y controles de zoom accesibles sobre el panel oscuro. La atribución de OpenFreeMap, OpenMapTiles y OpenStreetMap permanece visible. Se reemplazó el proveedor de imágenes que respondía 403. La comprobación visual reproduce datos vectoriales reales de Cochabamba, incluidas sus calles y nombres, tanto con servidor local como abriendo el archivo HTML.
 
-Las tres imágenes de la propuesta inicial fueron generadas con la herramienta integrada **Imagegen**, sin API externa ni CLI. La fotografía de portada se conserva como alternativa a WebGL y la de preparación permanece en la sección de marca; son ilustrativas. La antigua cuadrícula de cuatro platos ya no se usa en las tarjetas. Se conservan sus prompts originales abajo.
+Las tres imágenes de la propuesta inicial fueron generadas con la herramienta integrada **Imagegen**, sin API externa ni CLI. La fotografía de portada ocupa la portada y la de preparación permanece en la sección de marca; son ilustrativas. La antigua cuadrícula de cuatro platos ya no se usa en las tarjetas. Se conservan sus prompts originales abajo.
 
 ### `dist/assets/hero-sushi.png`
 

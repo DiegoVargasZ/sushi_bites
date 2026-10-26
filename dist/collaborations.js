@@ -16,7 +16,7 @@
     const values=Object.fromEntries([...new FormData(form)].map(([key,value])=>[key,String(value).trim()]));
     const body=["¡Hola, equipo de Sushi Bites!","Me gustaría proponer una colaboración.","",`Nombre: ${values.name}`,`Correo: ${values.email}`,`WhatsApp / Teléfono: ${values.phone||"No indicado"}`,`Ciudad y país: ${values.location}`,`Plataformas: ${values.platforms||"No indicadas"}`,"","Links de mis perfiles:",values.links||"No indicados","","Mi propuesta:",values.message].join("\n");
     summary.value=body;
-    const subject=`Propuesta de colaboración — ${values.name}`;
+    const subject=`Propuesta de colaboración: ${values.name}`;
     document.getElementById("proposal-email").href=`mailto:collabs@sushibitesbolivia.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     preview.hidden=false;
     status.textContent="La propuesta está preparada. Aún no se ha enviado.";
