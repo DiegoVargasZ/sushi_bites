@@ -11,6 +11,18 @@ const deliveryLocation=(()=>{
   const mapStyle="https://tiles.openfreemap.org/styles/liberty";
   const areas={central:[-17.3895,-66.1568],hupermall:[-17.378,-66.154],quillacollo:[-17.392,-66.279]};
   let map=null,marker=null,point=null,enabled=false,area="central",request=0,mapReady=false;
+  let libraryLoading=false,libraryReady=false,libraryFailed=false;
+  function loadLibrary(){
+    const stylesheet=document.createElement("link");
+    stylesheet.rel="stylesheet";stylesheet.href="vendor/maplibre/maplibre-gl.css";
+    const script=document.createElement("script");
+    script.src="vendor/maplibre/maplibre-gl.js";script.async=true;
+    const loaded=node=>new Promise((resolve,reject)=>{
+      node.onload=resolve;node.onerror=()=>reject(new Error("Map library unavailable"));
+      document.head.append(node);
+    });
+    return Promise.all([loaded(stylesheet),loaded(script)]).catch(error=>{stylesheet.remove();script.remove();throw error;});
+  }
   const normalize=p=>p&&typeof p.lat==="number"&&typeof p.lng==="number"&&Number.isFinite(p.lat)&&Number.isFinite(p.lng)&&Math.abs(p.lat)<=85.0511&&Math.abs(p.lng)<=180?{lat:Number(p.lat.toFixed(6)),lng:Number(p.lng.toFixed(6))}:null;
   const url=p=>`https://www.google.com/maps?q=${p.lat.toFixed(6)},${p.lng.toFixed(6)}`;
   function message(text,error=false){status.textContent=text;status.classList.toggle("is-error",error);element.classList.toggle("needs-point",error);}
@@ -33,7 +45,16 @@ const deliveryLocation=(()=>{
   }
   function initialize(){
     if(!enabled||!element.clientWidth||!element.clientHeight)return;
-    if(!window.maplibregl){message("No se pudo iniciar el mapa. Recarga la página para volver a intentarlo.",true);return;}
+    if(!libraryReady){
+      if(libraryLoading||libraryFailed)return;
+      libraryLoading=true;element.dataset.mapState="loading";
+      networkNotice.hidden=true;retryButton.hidden=true;
+      loadLibrary().then(()=>{libraryReady=true;libraryLoading=false;initialize();}).catch(()=>{
+        libraryFailed=true;libraryLoading=false;element.dataset.mapState="error";networkNotice.hidden=false;retryButton.hidden=false;
+        message("No se pudo cargar el mapa. Puedes usar tu ubicación actual o volver a cargarlo.",true);
+      });
+      return;
+    }
     if(!map){
       element.dataset.mapState="loading";
       try{
@@ -80,6 +101,7 @@ const deliveryLocation=(()=>{
   });
   clearButton.addEventListener("click",()=>{request++;locateButton.disabled=false;locateButton.textContent="⌖ Usar mi ubicación";choose(null);});
   retryButton.addEventListener("click",()=>{
+    libraryFailed=false;
     networkNotice.hidden=true;retryButton.hidden=true;element.dataset.mapState="loading";mapReady=false;
     if(map)map.setStyle(mapStyle);else initialize();
   });

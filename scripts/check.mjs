@@ -17,6 +17,14 @@ for(const [name,document] of Object.entries(documents)){
   for(const anchor of anchors)if(!ids.includes(anchor))throw new Error(`${name}: ancla sin destino: ${anchor}`);
   anchorCount+=anchors.length;
   if(!document.includes('lang="es"'))throw new Error(`${name}: falta idioma español`);
+  const schema=JSON.parse(document.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)?.[1]||'null');
+  if(schema?.['@graph']?.length!==3||schema['@graph'].some(branch=>branch['@type']!=='Restaurant'||!branch.telephone||!branch.address?.streetAddress))throw new Error(`${name}: faltan datos estructurados de las tres sucursales`);
+  if(/<(?:script|link)[^>]*(?:src|href)="vendor\/maplibre\//.test(document))throw new Error(`${name}: la biblioteca del mapa debe cargarse bajo demanda`);
+  const canonical=document.match(/rel="canonical" href="([^"]+)"/)?.[1];
+  if(canonical){
+    if(!canonical.startsWith('https://')||document.includes('content="noindex'))throw new Error(`${name}: metadatos de producción incorrectos`);
+    if(!/property="og:image" content="https:\/\//.test(document))throw new Error(`${name}: falta imagen social absoluta`);
+  }else if(!document.includes('content="noindex, follow"'))throw new Error(`${name}: una vista previa sin dominio debe evitar la indexación`);
   if((document.match(/aria-current="page"/g)||[]).length!==2)throw new Error(`${name}: falta la pestaña activa de escritorio o móvil`);
   for(const page of pages)if(!document.includes(`href="${page}"`))throw new Error(`${name}: falta enlace a ${page}`);
 }
@@ -51,6 +59,7 @@ if(catalog.products.length!==45||catalog.menuCategories.length!==7)throw new Err
 for(const match of html.matchAll(/data-add="([^"]+)"/g))if(!productIds.has(match[1]))throw new Error(`Producto destacado inexistente: ${match[1]}`);
 if(pages.length!==6)throw new Error('Deben existir seis páginas independientes');
 if(documents['index.html'].includes('id="menu-grid"'))throw new Error('El menú debe estar en su propia página');
+if(!documents['menu.html'].includes('for="menu-search">Buscar productos por nombre o ingrediente</label>'))throw new Error('El buscador debe tener una etiqueta accesible');
 if(!documents['colaboraciones.html'].includes('id="collaboration-form"'))throw new Error('Falta el formulario de colaboraciones');
 for(const [name,document] of Object.entries(documents))if(!document.includes('id="order-branch"')||!document.includes('id="send-order"'))throw new Error(`${name}: falta el formulario de pedido por sucursal`);
 if(!css.includes('prefers-reduced-motion'))throw new Error('Falta la alternativa de movimiento reducido');

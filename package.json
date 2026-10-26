@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
-    "check": "node --check dist/menu-data.js && node --check dist/order-data.js && node --check dist/delivery-map.js && node --check dist/app.js && node --check dist/assets/sushi-material-atlas.js && node --check dist/sushi-3d.js && node --check dist/collaborations.js && node scripts/check.mjs",
-    "build": "node scripts/build-pages.mjs && npm run check"
+    "check": "node --check dist/menu-data.js && node --check dist/order-data.js && node --check dist/cart-store.js && node --check dist/delivery-map.js && node --check dist/app.js && node --check dist/assets/sushi-material-atlas.js && node --check dist/sushi-3d.js && node --check dist/collaborations.js && node scripts/check.mjs && node --test scripts/cart-store.test.mjs scripts/metadata.test.mjs",
+    "build": "node scripts/build-pages.mjs && npm run check",
+    "build:production": "node scripts/build-pages.mjs --production && npm run check"
   }
 }

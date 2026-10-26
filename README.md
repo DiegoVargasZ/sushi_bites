@@ -16,7 +16,9 @@ Abre http://127.0.0.1:5173. También puedes abrir `dist/index.html` directamente
 
 ## Carta completa
 
-La navegación separa **Inicio**, **Menú**, **Ubicaciones**, **Nosotros**, **Preguntas** y **Colaboraciones**. La bolsa se conserva al cambiar de página. Todas las páginas funcionan también al abrir sus archivos HTML directamente; se recomienda el servidor local para la persistencia y el portapapeles.
+La navegación separa **Inicio**, **Menú**, **Ubicaciones**, **Nosotros**, **Preguntas** y **Colaboraciones**. La bolsa se conserva al cambiar de página y se sincroniza entre pestañas del mismo origen. Cada suma o resta se guarda como un registro independiente; dos pestañas no sobrescriben el pedido completo. Se recuperan las bolsas del formato anterior y se respeta el límite de 99 unidades. Si cambia la bolsa desde otra pestaña, se actualizan cantidades y subtotal y se invalida el mensaje preparado. Sin almacenamiento disponible, la bolsa funciona en memoria en esa página.
+
+Todas las páginas funcionan también al abrir sus archivos HTML directamente; se recomienda el servidor local para la persistencia compartida y el portapapeles, ya que el comportamiento del almacenamiento entre archivos depende del navegador.
 
 45 productos en siete categorías: Fusiones Nikkei (6), Rolls fritos (6), Ehomakis (6), Emperadores (6), Postres (3), Bebidas (12) y Salsas (6).
 
@@ -34,9 +36,9 @@ El botón **Pedir por WhatsApp** abre el chat correspondiente con productos, can
 - Hupermall: +591 75060007.
 - Quillacollo: +591 62666889.
 
-La página conserva modalidad, sucursal, coordenadas y datos de entrega durante la sesión del navegador para cambiar de pestaña sin volver a escribirlos. Se puede copiar el resumen si no se abre WhatsApp. La bolsa se mantiene al abrir el chat. El costo de delivery y el total final los confirma la sucursal.
+La página conserva modalidad, sucursal, coordenadas y datos de entrega durante la sesión de esa pestaña para navegar entre páginas sin volver a escribirlos. Se puede copiar el resumen si no se abre WhatsApp. La bolsa se mantiene al abrir el chat. El costo de delivery y el total final los confirma la sucursal.
 
-El mapa utiliza **MapLibre GL JS 5.24.0**, incluido localmente en `dist/vendor/maplibre/`, y mapas vectoriales de **OpenFreeMap**. Se sustituyó el acceso directo a `tile.openstreetmap.org` que mostraba el bloqueo 403. La instancia pública de OpenFreeMap permite uso comercial sin registro ni clave y responde con CORS compatible con el origen de los archivos locales; ver https://openfreemap.org/quick_start/.
+El mapa utiliza **MapLibre GL JS 5.24.0**, incluido localmente en `dist/vendor/maplibre/`, y mapas vectoriales de **OpenFreeMap**. Su JavaScript (1,06 MB) y su CSS se descargan al abrir una bolsa con productos y elegir delivery. Navegar por las seis páginas o preparar un recojo no descarga la biblioteca. Se reutiliza la carga dentro de la página y se ofrece reintento si falla. Se sustituyó el acceso directo a `tile.openstreetmap.org` que mostraba el bloqueo 403. La instancia pública de OpenFreeMap permite uso comercial sin registro ni clave y responde con CORS compatible con el origen de los archivos locales; ver https://openfreemap.org/quick_start/.
 
 Las calles requieren Internet y el navegador debe admitir WebGL. La geolocalización requiere permiso y un contexto seguro (HTTPS o localhost); si se deniega, se mantiene la selección manual. Mientras carga el mapa se muestra un indicador; si falla se muestra un aviso y un botón para volver a cargarlo. No se permite marcar a ciegas sobre un mapa que no haya cargado. La elección manual posterior tiene prioridad sobre una respuesta GPS tardía.
 
@@ -60,6 +62,7 @@ El atlas optimizado de 1024 × 1024 está incluido en `dist/assets/sushi-materia
 
 - `dist/menu-data.js`: catálogo, categorías, precios y fotos.
 - `dist/app.js`: búsqueda, filtros, detalles y pedido.
+- `dist/cart-store.js`: persistencia de cantidades y sincronización entre pestañas.
 - `dist/order-data.js`: sucursales, direcciones y números de WhatsApp para pedidos.
 - `dist/delivery-map.js`: selección de punto de entrega y geolocalización.
 - `dist/vendor/maplibre/`: biblioteca activa del mapa, estilos y licencia BSD.
@@ -72,6 +75,21 @@ El atlas optimizado de 1024 × 1024 está incluido en `dist/assets/sushi-materia
 - `src/layout.html` y `src/pages/`: plantilla común y contenido editable de las seis páginas.
 - `src/photo-sources.json`: fuentes originales de las fotografías.
 - `scripts/build-pages.mjs`: genera las seis páginas a partir de `src/`.
+- `site.config.json`: dominio público utilizado para los metadatos de producción.
+
+## Imágenes y publicación
+
+Las tres imágenes de presentación se sirven en WebP. La portada pesa 186 KB en su tamaño original y tiene una variante de 59 KB a 768 píxeles, seleccionada por el navegador según pantalla y densidad. Antes pesaba 2,43 MB. Las imágenes del mosaico y del chef pesan 177 KB y 132 KB. Los PNG originales se conservan en `src/assets/`; no se distribuyen en `dist/`.
+
+Para preparar la publicación, establece `siteUrl` en `site.config.json` con el dominio HTTPS definitivo y ejecuta:
+
+```sh
+npm run build:production
+```
+
+También puedes proporcionar el dominio mediante la variable de entorno `SITE_URL`. La compilación genera URLs canónicas distintas, Open Graph y Twitter con imágenes absolutas, `robots.txt` y un sitemap de las seis páginas. Los datos estructurados `Restaurant` reutilizan las direcciones y teléfonos de las tres sucursales del pedido, con enlaces al menú. No se añaden horarios ni coordenadas sin confirmar. Referencias: [Restaurant de Schema.org](https://schema.org/Restaurant) y [negocios locales de Google](https://developers.google.com/search/docs/appearance/structured-data/local-business).
+
+Con `siteUrl` vacío, `npm run build` genera una vista previa con `noindex` y sin URLs de dominio inventadas. `build:production` exige configurar ese valor. Publica el contenido de `dist/` después de compilar para el dominio final.
 
 ## Verificación
 
@@ -85,6 +103,6 @@ Para regenerar las páginas tras editar `src/`:
 npm run build
 ```
 
-Comprueba sintaxis, identificadores, enlaces entre páginas, navegación activa, integridad del catálogo, productos destacados y existencia de todas las fotos. `dist/` está lista para alojamiento estático. La tipografía externa tiene alternativas locales.
+Comprueba sintaxis, identificadores, enlaces entre páginas, navegación activa, integridad del catálogo, productos destacados, fotos, etiqueta del buscador, carga diferida del mapa y datos estructurados. Incluye pruebas de bolsas existentes, concurrencia entre pestañas, límite de cantidades, registros dañados, almacenamiento bloqueado y metadatos de producción. La tipografía externa tiene alternativas locales.
 
 El pedido se prepara y se abre en el WhatsApp de la sucursal elegida. El visitante pulsa Enviar allí. La web no procesa pagos; disponibilidad, costo de delivery y total final se confirman directamente con la sucursal.

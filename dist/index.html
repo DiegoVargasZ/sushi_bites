@@ -8,17 +8,22 @@
   <meta property="og:title" content="Buen sushi. Buen mood. — Sushi Bites">
   <meta property="og:description" content="Ehomakis crocantes, burgers de arroz y fusiones Nikkei de Sushi Bites en Bolivia.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/hero-sushi.png">
+  <meta property="og:site_name" content="Sushi Bites">
+  <meta property="og:locale" content="es_BO">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Buen sushi. Buen mood. — Sushi Bites">
+  <meta name="twitter:description" content="Ehomakis crocantes, burgers de arroz y fusiones Nikkei de Sushi Bites en Bolivia.">
+  <meta name="robots" content="noindex, follow">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Restaurant","name":"Sushi Bites Central","telephone":"+59169447617","address":{"@type":"PostalAddress","streetAddress":"Av. Santa Cruz y Julio Rodriguez","addressLocality":"Cochabamba","addressRegion":"Cochabamba","addressCountry":"BO"},"servesCuisine":["Japonesa","Nikkei","Sushi"],"currenciesAccepted":"BOB"},{"@type":"Restaurant","name":"Sushi Bites Hupermall","telephone":"+59175060007","address":{"@type":"PostalAddress","streetAddress":"Av. Pando esq. Portales","addressLocality":"Cochabamba","addressRegion":"Cochabamba","addressCountry":"BO"},"servesCuisine":["Japonesa","Nikkei","Sushi"],"currenciesAccepted":"BOB"},{"@type":"Restaurant","name":"Sushi Bites Quillacollo","telephone":"+59162666889","address":{"@type":"PostalAddress","streetAddress":"Av. Calle Blanco Galindo","addressLocality":"Quillacollo","addressRegion":"Cochabamba","addressCountry":"BO"},"servesCuisine":["Japonesa","Nikkei","Sushi"],"currenciesAccepted":"BOB"}]}</script>
   <title>Buen sushi. Buen mood. — Sushi Bites</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon-sushi-bites.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700;750;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
   <link rel="stylesheet" href="styles.css">
   <script src="menu-data.js" defer></script>
+  <script src="cart-store.js" defer></script>
   <script src="order-data.js" defer></script>
-  <script src="vendor/maplibre/maplibre-gl.js" defer></script>
   <script src="delivery-map.js" defer></script>
   <script src="app.js" defer></script>
   <script src="assets/sushi-material-atlas.js" defer></script>
@@ -61,7 +66,7 @@
         <div class="roll-stage">
           <div class="roll-halo" aria-hidden="true"></div>
           <span class="hero-japanese" lang="ja" aria-hidden="true">ひとくちの幸せ</span>
-          <img class="roll-fallback" src="assets/hero-sushi.png" alt="Sushi artesanal de salmón, arroz y alga nori" width="1536" height="1024" fetchpriority="high">
+          <img class="roll-fallback" src="assets/hero-sushi.webp" srcset="assets/hero-sushi-768.webp 768w, assets/hero-sushi.webp 1536w" sizes="(max-width: 740px) 110vw, 770px" alt="Sushi artesanal de salmón, arroz y alga nori" width="1536" height="1024" fetchpriority="high" decoding="async">
           <canvas id="sushi-canvas" role="img" aria-label="Sushi en 3D con nori, arroz, salmón, palta y queso crema. Arrastra para girarlo; con las flechas puedes girar e inclinar la vista."></canvas>
           <div class="roll-annotation" aria-hidden="true"><span class="annotation-index">01</span><span class="annotation-line"></span><span id="roll-ingredient">Todo empieza con el nori.</span></div>
           <span class="roll-ground-label" aria-hidden="true">HECHO A MANO. HASTA EL ÚLTIMO GRANO.</span>

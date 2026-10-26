@@ -1,13 +1,6 @@
 "use strict";
 
-const storageKey = "sushi-bites-cart-menu-v2";
-let cart = {};
-try {
-  const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
-  if (saved && typeof saved === "object" && !Array.isArray(saved)) {
-    for (const p of products) if (Number.isInteger(saved[p.id]) && saved[p.id]>0) cart[p.id]=Math.min(saved[p.id],99);
-  }
-} catch { /* The cart still works when browser storage is unavailable. */ }
+let cart = cartStore.read();
 const money = value => `Bs ${new Intl.NumberFormat("es-BO",{minimumFractionDigits:value%1?2:0,maximumFractionDigits:2}).format(value)}`;
 const icon = name => `<svg aria-hidden="true"><use href="#i-${name}"/></svg>`;
 const photo = p => `<img src="${p.photo}" alt="${p.name}" width="360" height="360" loading="lazy" decoding="async">`;
@@ -139,14 +132,20 @@ function updateCart() {
   } else {
     cartBody.innerHTML=entries.map(p=>`<article class="cart-item"><div class="cart-item-photo">${photo(p)}</div><div><h3>${p.name}</h3><p class="item-subtitle">${p.serving} · ${money(p.price)}</p><div class="quantity-control"><button data-quantity="${p.id}" data-delta="-1" aria-label="${cart[p.id]===1?"Quitar":"Restar una unidad de"} ${p.name}">−</button><span aria-label="Cantidad de ${p.name}: ${cart[p.id]}">${cart[p.id]}</span><button data-quantity="${p.id}" data-delta="1" aria-label="Sumar una unidad de ${p.name}" ${cart[p.id]>=99?"disabled":""}>+</button></div></div><strong>${money(p.price*cart[p.id])}</strong></article>`).join("");
   }
-  try {localStorage.setItem(storageKey,JSON.stringify(cart));} catch { /* Storage is optional. */ }
 }
+
+function refreshCart() {cart=cartStore.read();updateCart();}
+window.addEventListener("storage",event=>{if(cartStore.handles(event.key))refreshCart();});
+window.addEventListener("pageshow",refreshCart);
+window.addEventListener("focus",refreshCart);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)refreshCart();});
 
 function addProduct(id) {
   const p=products.find(p=>p.id===id);
   if(!p)return;
+  cart=cartStore.read();
   if((cart[id]||0)>=99){notify("Has llegado al máximo de 99 unidades por producto.");return;}
-  cart[id]=(cart[id]||0)+1;
+  cart=cartStore.change(id,1);
   updateCart();
   notify(`${p.name} añadido a tu pedido. Buen gusto.`);
 }
@@ -184,18 +183,18 @@ document.addEventListener("click",event=>{
   if(target.dataset.quantity) {
     const id=target.dataset.quantity;
     const delta=Number(target.dataset.delta);
-    const next=Math.max(0,Math.min(99,(cart[id]||0)+delta));
-    if(next===0)delete cart[id];else cart[id]=next;
+    cart=cartStore.change(id,delta);
     updateCart();
     // Rendering replaces the stepper; restore its keyboard focus.
     const replacement=cartBody.querySelector(`[data-quantity="${id}"][data-delta="${delta}"]`);
     if(replacement)replacement.focus({preventScroll:true});else cartDialog.querySelector("[data-close-cart]").focus({preventScroll:true});
   }
 });
-document.querySelector(".cart-toggle").addEventListener("click",()=>{updateCart();openDialog(cartDialog);});
-document.querySelector(".nav-order").addEventListener("click",event=>{if(products.some(p=>cart[p.id])){event.preventDefault();updateCart();openDialog(cartDialog);}});
+document.querySelector(".cart-toggle").addEventListener("click",()=>{refreshCart();openDialog(cartDialog);});
+document.querySelector(".nav-order").addEventListener("click",event=>{cart=cartStore.read();if(products.some(p=>cart[p.id])){event.preventDefault();updateCart();openDialog(cartDialog);}});
 
 function prepareOrder(){
+  refreshCart();
   const entries=products.filter(p=>cart[p.id]);
   if(!entries.length){notify("Añade un producto antes de preparar tu pedido.");return null;}
   syncFulfillment();
