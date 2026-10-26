@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Explora las 45 opciones de Sushi Bites: fusiones Nikkei, rolls fritos, Ehomakis, Emperadores, mochis, bebidas y salsas.">
+  <meta property="og:title" content="Menú completo — Sushi Bites">
+  <meta property="og:description" content="Explora las 45 opciones de Sushi Bites: fusiones Nikkei, rolls fritos, Ehomakis, Emperadores, mochis, bebidas y salsas.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/hero-sushi.png">
+  <title>Menú completo — Sushi Bites</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon-sushi-bites.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700;750;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="menu-data.js" defer></script>
+  <script src="order-data.js" defer></script>
+  <script src="vendor/maplibre/maplibre-gl.js" defer></script>
+  <script src="delivery-map.js" defer></script>
+  <script src="app.js" defer></script>
+  
+</head>
+<body data-page="menu">
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-diagonal" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4C6 2 2 10 6 16s16 3 14-12ZM4 21 16 9M9 16v-5m0 5h5"/></symbol>
+    <symbol id="i-roll" viewBox="0 0 24 24"><ellipse cx="12" cy="9" rx="9" ry="6"/><path d="M3 9v7c0 7 18 7 18 0V9"/><ellipse cx="12" cy="9" rx="3" ry="2"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 2.6 7.4L22 12l-7.4 2.6L12 22l-2.6-7.4L2 12l7.4-2.6L12 2Z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H5a2 2 0 0 0-2 2v10a1 1 0 0 0 1 1h4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  </svg>
+
+  <header class="header" id="top">
+    <div class="container nav-bar">
+      <a class="brand" href="index.html" aria-label="Sushi Bites, inicio"><img class="brand-logo" src="assets/logo-oficial.webp" alt="Sushi Bites" width="1500" height="500"></a>
+      <nav class="desktop-nav" aria-label="Navegación principal"><a href="index.html">Inicio</a><a href="menu.html" class="active" aria-current="page">Menú</a><a href="ubicaciones.html">Ubicaciones</a><a href="nosotros.html">Nosotros</a><a href="preguntas.html">Preguntas</a><a href="colaboraciones.html">Colaboraciones<span class="nav-collab-dot" aria-hidden="true"></span></a></nav>
+      <div class="nav-actions"><button class="cart-toggle" type="button" aria-label="Abrir mi pedido"><svg><use href="#i-bag"/></svg><span class="cart-count" hidden>0</span></button><a class="button button-small nav-order" href="menu.html">Pide algo bueno <svg><use href="#i-diagonal"/></svg></a><button class="mobile-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegación móvil" hidden><a href="index.html">Inicio</a><a href="menu.html" class="active" aria-current="page">Menú</a><a href="ubicaciones.html">Ubicaciones</a><a href="nosotros.html">Nosotros</a><a href="preguntas.html">Preguntas</a><a href="colaboraciones.html">Colaboraciones<span class="nav-collab-dot" aria-hidden="true"></span></a></nav>
+  </header>
+
+  <main id="main"><header class="page-heading container"><span class="eyebrow section-kicker"><span class="small-line"></span>NUESTRA CARTA</span><h1>Tu próximo <em>antojo.</em></h1><p>Fusiones Nikkei, Ehomakis, Emperadores y algo dulce para cerrar. Explora las 45 opciones de Sushi Bites.</p></header><section class="menu-section section container" id="carta" aria-labelledby="menu-title">
+      <div class="section-heading reveal"><div><span class="eyebrow section-kicker"><span class="small-line"></span> ELIGE TU PRÓXIMO FAVORITO</span><h2 id="menu-title">Amor al <em>primer roll.</em></h2></div><p>Del primer crunch al último mochi.<br>La carta completa de Sushi Bites, a tu manera.</p></div>
+      <div class="menu-search-row"><label class="menu-search-label" for="menu-search"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="menu-search" type="search" placeholder="¿Qué se te antoja? Salmón, pollo, mochi…" autocomplete="off"><button type="button" id="clear-search" aria-label="Borrar búsqueda" hidden>×</button></label><span id="menu-results" role="status" aria-live="polite"></span></div><div class="menu-toolbar"><div class="menu-tabs" role="tablist" aria-label="Categorías de la carta"><button role="tab" id="tab-all" aria-controls="menu-grid" aria-selected="true"  data-category="all">Todo <span>00</span></button><button role="tab" id="tab-fusiones" aria-controls="menu-grid" aria-selected="false" tabindex="-1" data-category="fusiones">Fusiones Nikkei <span>00</span></button><button role="tab" id="tab-fritos" aria-controls="menu-grid" aria-selected="false" tabindex="-1" data-category="fritos">Rolls fritos <span>00</span></button><button role="tab" id="tab-ehomakis" aria-controls="menu-grid" aria-selected="false" tabindex="-1" data-category="ehomakis">Ehomakis <span>00</span></button><button role="tab" id="tab-emperadores" aria-controls="menu-grid" aria-selected="false" tabindex="-1" data-category="emperadores">Emperadores <span>00</span></button><button role="tab" id="tab-postres" aria-controls="menu-grid" aria-selected="false" tabindex="-1" data-category="postres">Postres <span>00</span></button><button role="tab" id="tab-bebidas" aria-controls="menu-grid" aria-selected="false" tabindex="-1" data-category="bebidas">Bebidas <span>00</span></button><button role="tab" id="tab-salsas" aria-controls="menu-grid" aria-selected="false" tabindex="-1" data-category="salsas">Salsas <span>00</span></button></div></div>
+      <div class="menu-grid" id="menu-grid" role="tabpanel" aria-labelledby="tab-all" tabindex="0"></div>
+      <div class="menu-footer"><p><svg><use href="#i-leaf"/></svg> ¿Alguna alergia? Consulta los ingredientes y confirma la preparación con el restaurante.</p><span>45 opciones · Precios en bolivianos</span></div>
+    </section></main>
+
+  <footer class="footer container"><div class="footer-top"><a class="brand" href="index.html" aria-label="Sushi Bites, volver al inicio"><img class="brand-logo" src="assets/logo-oficial.webp" alt="Sushi Bites" width="1500" height="500"></a><p>Pequeños bocados. Grandes momentos.</p><a class="back-top" href="#top">VOLVER ARRIBA <span>↑</span></a></div><div class="footer-bottom"><span>© <span id="year">2026</span> Sushi Bites. Hecho con buen gusto.</span><nav aria-label="Enlaces del pie"><a href="menu.html">Menú</a><a href="ubicaciones.html">Ubicaciones</a><a href="nosotros.html">Nosotros</a><a href="preguntas.html">Preguntas</a><a href="colaboraciones.html">Colaboraciones</a></nav><span class="demo-note">Fusiones Nikkei · Ehomakis · Emperadores</span></div></footer>
+
+  <dialog class="cart-dialog" aria-labelledby="cart-title">
+    <div class="cart-header"><div><span class="eyebrow">BUENA ELECCIÓN</span><h2 id="cart-title">Tu próximo <em>antojo.</em></h2></div><button class="icon-button" data-close-cart aria-label="Cerrar pedido"><svg><use href="#i-close"/></svg></button></div>
+    <div class="cart-content">
+      <div class="cart-body" id="cart-items"></div>
+      <form class="cart-checkout" id="cart-checkout" hidden>
+        <fieldset class="order-method"><legend><span>01</span> ¿Cómo quieres tu pedido?</legend><div class="order-method-options"><label><input type="radio" name="fulfillment" value="delivery" required><span>Delivery<small>Lo llevamos a tu dirección</small></span></label><label><input type="radio" name="fulfillment" value="pickup" required><span>Para recoger<small>Pasas por la sucursal</small></span></label></div></fieldset>
+        <div class="order-field"><label for="order-branch"><span class="checkout-step">02</span> ¿De qué sucursal?</label><select id="order-branch" name="branch" required aria-describedby="order-branch-info"><option value="">Elige una sucursal</option></select><p id="order-branch-info" class="order-field-hint">Tu pedido irá al WhatsApp de la sucursal que elijas.</p></div>
+        <fieldset class="delivery-fields" id="delivery-fields" hidden disabled>
+          <legend><span>03</span> ¿Dónde lo entregamos?</legend>
+          <div class="delivery-map-heading"><span>Marca tu ubicación <span class="required-mark">*</span></span><button type="button" id="locate-delivery">⌖ Usar mi ubicación</button></div>
+          <p class="delivery-map-help" id="delivery-map-help">Toca el mapa para colocar el pin. Puedes arrastrarlo para ajustar el punto.<span class="sr-only">Con el teclado, mueve el mapa con las flechas y pulsa Enter para marcar su centro.</span></p>
+          <div id="delivery-map" class="delivery-map" role="region" aria-label="Mapa para seleccionar la ubicación de entrega" aria-describedby="delivery-map-help delivery-map-status"></div>
+          <p class="delivery-map-network" id="delivery-map-network" hidden>El mapa no ha cargado. Revisa tu conexión, vuelve a intentar o usa tu ubicación actual.</p>
+          <button type="button" id="retry-delivery-map" class="retry-delivery-map" hidden>Volver a cargar el mapa</button>
+          <div class="delivery-point-actions"><a id="delivery-point-link" target="_blank" rel="noopener noreferrer" hidden>Ver punto seleccionado ↗</a><button type="button" id="clear-delivery-point" hidden>Quitar punto</button></div>
+          <p class="delivery-map-status" id="delivery-map-status" role="status" aria-live="polite">Selecciona en el mapa el lugar donde recibirás tu pedido.</p>
+          <label for="delivery-address">Dirección de entrega <span class="required-mark">*</span></label><textarea id="delivery-address" name="address" rows="2" maxlength="350" autocomplete="street-address" placeholder="Zona, calle, número, edificio o departamento…"></textarea>
+          <label for="delivery-reference">Referencia para llegar <span class="optional-label">(opcional)</span></label><input id="delivery-reference" name="reference" maxlength="250" placeholder="Portón, piso o un punto cercano">
+        </fieldset>
+        <label class="order-notes-label" for="order-notes">¿Algún detalle para tu pedido?</label><textarea id="order-notes" name="notes" maxlength="500" rows="2" placeholder="Sin picante, salsa aparte…"></textarea>
+        <div class="cart-total"><span>Subtotal de productos</span><strong id="cart-total">Bs 0</strong></div><p class="cart-delivery-note" id="order-cost-note">Disponibilidad y total final por confirmar con la sucursal.</p>
+        <button type="submit" class="button checkout-button" id="send-order">Pedir por WhatsApp <svg><use href="#i-arrow"/></svg></button>
+        <button type="button" class="copy-order-button" id="copy-order">Copiar resumen <svg><use href="#i-copy"/></svg></button>
+        <p class="checkout-help">Se abrirá el chat de la sucursal con tu pedido. Revisa el mensaje y pulsa Enviar en WhatsApp.</p>
+        <div class="whatsapp-ready" id="whatsapp-ready" hidden><p id="whatsapp-status" role="status" aria-live="polite"></p><a id="whatsapp-order-link" target="_blank" rel="noopener noreferrer">Abrir el chat de la sucursal ↗</a></div>
+        <div id="copy-fallback" hidden><label for="order-summary">Copia este resumen:</label><textarea id="order-summary" readonly rows="7"></textarea></div>
+      </form>
+    </div>
+  </dialog>
+  <dialog class="product-dialog" aria-labelledby="product-title"><button class="icon-button product-close" data-close-product aria-label="Cerrar detalles"><svg><use href="#i-close"/></svg></button><div id="product-detail"></div></dialog>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

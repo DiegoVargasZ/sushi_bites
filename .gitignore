@@ -1,0 +1,5 @@
+node_modules/
+output/
+.playwright-cli/
+*.zip
+.openai/.sites-state.json

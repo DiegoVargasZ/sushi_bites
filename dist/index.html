@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Ehomakis crocantes, burgers de arroz y fusiones Nikkei de Sushi Bites en Bolivia.">
+  <meta property="og:title" content="Buen sushi. Buen mood. — Sushi Bites">
+  <meta property="og:description" content="Ehomakis crocantes, burgers de arroz y fusiones Nikkei de Sushi Bites en Bolivia.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/hero-sushi.png">
+  <title>Buen sushi. Buen mood. — Sushi Bites</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon-sushi-bites.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700;750;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="menu-data.js" defer></script>
+  <script src="order-data.js" defer></script>
+  <script src="vendor/maplibre/maplibre-gl.js" defer></script>
+  <script src="delivery-map.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="assets/sushi-material-atlas.js" defer></script>
+  <script src="sushi-3d.js" defer></script>
+</head>
+<body data-page="inicio">
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-diagonal" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4C6 2 2 10 6 16s16 3 14-12ZM4 21 16 9M9 16v-5m0 5h5"/></symbol>
+    <symbol id="i-roll" viewBox="0 0 24 24"><ellipse cx="12" cy="9" rx="9" ry="6"/><path d="M3 9v7c0 7 18 7 18 0V9"/><ellipse cx="12" cy="9" rx="3" ry="2"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 2.6 7.4L22 12l-7.4 2.6L12 22l-2.6-7.4L2 12l7.4-2.6L12 2Z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H5a2 2 0 0 0-2 2v10a1 1 0 0 0 1 1h4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  </svg>
+
+  <header class="header" id="top">
+    <div class="container nav-bar">
+      <a class="brand" href="index.html" aria-label="Sushi Bites, inicio"><img class="brand-logo" src="assets/logo-oficial.webp" alt="Sushi Bites" width="1500" height="500"></a>
+      <nav class="desktop-nav" aria-label="Navegación principal"><a href="index.html" class="active" aria-current="page">Inicio</a><a href="menu.html">Menú</a><a href="ubicaciones.html">Ubicaciones</a><a href="nosotros.html">Nosotros</a><a href="preguntas.html">Preguntas</a><a href="colaboraciones.html">Colaboraciones<span class="nav-collab-dot" aria-hidden="true"></span></a></nav>
+      <div class="nav-actions"><button class="cart-toggle" type="button" aria-label="Abrir mi pedido"><svg><use href="#i-bag"/></svg><span class="cart-count" hidden>0</span></button><a class="button button-small nav-order" href="menu.html">Pide algo bueno <svg><use href="#i-diagonal"/></svg></a><button class="mobile-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegación móvil" hidden><a href="index.html" class="active" aria-current="page">Inicio</a><a href="menu.html">Menú</a><a href="ubicaciones.html">Ubicaciones</a><a href="nosotros.html">Nosotros</a><a href="preguntas.html">Preguntas</a><a href="colaboraciones.html">Colaboraciones<span class="nav-collab-dot" aria-hidden="true"></span></a></nav>
+  </header>
+
+  <main id="main"><section class="hero container" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="status-dot"></span> BUEN SUSHI. BUEN MOOD.</span>
+        <h1 id="hero-title">Pequeños<br>bocados.<br><em>Grandes</em><br><em>momentos.</em><span class="heading-star" aria-hidden="true">✳</span></h1>
+        <p>Ehomakis crocantes. Burgers de arroz.<br>Fusiones Nikkei hechas para sorprender<br class="desktop-break"> y un antojo que siempre vuelve.</p>
+        <div class="hero-actions"><a href="menu.html" class="button">Encuentra tu roll <svg><use href="#i-arrow"/></svg></a><a href="nosotros.html" class="text-link">Conoce nuestra esencia <span>↗</span></a></div>
+        <div class="hero-signature"><span class="signature-icon"><svg><use href="#i-roll"/></svg></span><span>Hecho a mano.<br><strong>Disfrutado a tu manera.</strong></span><span class="signature-line"></span><span class="signature-japanese" lang="ja" aria-hidden="true">いただきます</span></div>
+      </div>
+      <div class="hero-art roll-experience" id="roll-experience">
+        <div class="roll-scene-heading"><span class="eyebrow">EL ANTOJO ESTÁ EN LOS DETALLES.</span><span class="scene-live"><span></span> FURAI · EN 3D</span></div>
+        <div class="roll-stage">
+          <div class="roll-halo" aria-hidden="true"></div>
+          <span class="hero-japanese" lang="ja" aria-hidden="true">ひとくちの幸せ</span>
+          <img class="roll-fallback" src="assets/hero-sushi.png" alt="Sushi artesanal de salmón, arroz y alga nori" width="1536" height="1024" fetchpriority="high">
+          <canvas id="sushi-canvas" role="img" aria-label="Sushi en 3D con nori, arroz, salmón, palta y queso crema. Arrastra para girarlo; con las flechas puedes girar e inclinar la vista."></canvas>
+          <div class="roll-annotation" aria-hidden="true"><span class="annotation-index">01</span><span class="annotation-line"></span><span id="roll-ingredient">Todo empieza con el nori.</span></div>
+          <span class="roll-ground-label" aria-hidden="true">HECHO A MANO. HASTA EL ÚLTIMO GRANO.</span>
+        </div>
+        <div class="roll-controls" hidden>
+          <div class="roll-view-tools"><div class="roll-finishes" role="group" aria-label="Acabado del sushi"><button type="button" data-finish="0" aria-pressed="true">Nori clásico</button><button type="button" data-finish="1" aria-pressed="false">Crocante</button></div><span>↔ Arrastra para girar</span></div>
+          <div class="roll-control-heading"><span>DEL INGREDIENTE AL ANTOJO</span><button type="button" id="roll-play" aria-label="Pausar animación del sushi" aria-pressed="true"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></svg><span>Pausar</span></button></div>
+          <label class="sr-only" for="roll-progress">Progreso del armado del sushi</label><input id="roll-progress" type="range" min="0" max="100" step="1" value="0" aria-valuetext="Sushi desarmado">
+          <div class="roll-step-labels" aria-hidden="true"><span class="is-current">01 · Nori</span><span>02 · Arroz</span><span>03 · Relleno</span><span>04 · ¡A disfrutar!</span></div>
+        </div>
+      </div>
+      <a class="scroll-link" href="menu.html"><span>DESLIZA. SE PONE MEJOR.</span><span class="scroll-circle">↓</span></a>
+    </section><div class="marquee" aria-label="Fresco por naturaleza. Hecho con intención. Para compartir. O no."><div class="marquee-track"><span>FRESCO POR NATURALEZA</span><span class="marquee-flower">✳</span><span>HECHO CON INTENCIÓN</span><span class="marquee-flower">✳</span><span>PARA COMPARTIR. O NO.</span><span class="marquee-flower">✳</span><span aria-hidden="true">FRESCO POR NATURALEZA</span><span class="marquee-flower" aria-hidden="true">✳</span><span aria-hidden="true">HECHO CON INTENCIÓN</span><span class="marquee-flower" aria-hidden="true">✳</span><span aria-hidden="true">PARA COMPARTIR. O NO.</span><span class="marquee-flower" aria-hidden="true">✳</span></div></div>
+
+    <section class="combo-section container reveal" aria-labelledby="combo-title"><div class="combo-art"><img src="assets/menu/furai-emperador.jpg" alt="Furai Emperador con topping de camote crocante" width="360" height="360" loading="lazy"><span class="combo-stamp">MODO<br><em>emperador.</em><svg><use href="#i-diagonal"/></svg></span></div><div class="combo-copy"><span class="eyebrow"><span class="status-dot"></span> UN ROLL QUE SE HACE NOTAR</span><h2 id="combo-title">Más crunch.<br><em>Más de lo que te gusta.</em></h2><p>Salmón, queso crema, melón, pepino y palta. Súmale queso extra, pulpo, camote frito, pimiento y sésamo. Así se disfruta un Furai Emperador.</p><div class="combo-details"><span><strong>Furai</strong> salmón</span><span><strong>Extra</strong> queso</span><span><strong>Crunch</strong> de camote</span></div><div class="combo-bottom"><div class="combo-price"><span>Furai (Emperador)</span><strong>Bs 56<small> / unidad</small></strong></div><button class="button" data-add="furai-emperador">Lo quiero <svg><use href="#i-plus"/></svg></button></div></div></section><section class="ritual-section container section" aria-labelledby="ritual-title"><div class="ritual-heading reveal"><span class="eyebrow section-kicker"><span class="small-line"></span> CERO COMPLICACIONES</span><h2 id="ritual-title">Tu antojo tiene <em>un plan.</em></h2></div><div class="ritual-grid"><article class="ritual-item reveal"><span class="ritual-number">01</span><div class="ritual-icon"><svg><use href="#i-roll"/></svg></div><h3>Encuentra tu mood</h3><p>Ehomaki clásico, roll frito o Emperador. Explora las fusiones y encuentra tu favorito.</p></article><article class="ritual-item reveal"><span class="ritual-number">02</span><div class="ritual-icon"><svg><use href="#i-bag"/></svg></div><h3>Arma tu combinación</h3><p>Añade tus favoritos y ajusta las cantidades. Un roll para ti, otro para «probar».</p></article><article class="ritual-item reveal"><span class="ritual-number">03</span><div class="ritual-icon"><svg><use href="#i-spark"/></svg></div><h3>Haz que pase</h3><p>Elige delivery o recojo y tu sucursal. Envía el pedido a su WhatsApp para confirmar los detalles.</p></article></div></section><section class="final-cta container reveal" id="contacto" aria-labelledby="cta-title"><span class="cta-spark" aria-hidden="true">✳</span><span class="eyebrow">EL MEJOR PLAN ES EL QUE SABE BIEN</span><h2 id="cta-title">¿Y si hoy <em>toca sushi?</em></h2><p>Tu próximo bocado favorito te está esperando.</p><a href="menu.html" class="button button-dark">Sí, hoy toca sushi <svg><use href="#i-diagonal"/></svg></a><span class="cta-japanese" lang="ja" aria-hidden="true">寿司</span></section>
+</main>
+
+  <footer class="footer container"><div class="footer-top"><a class="brand" href="index.html" aria-label="Sushi Bites, volver al inicio"><img class="brand-logo" src="assets/logo-oficial.webp" alt="Sushi Bites" width="1500" height="500"></a><p>Pequeños bocados. Grandes momentos.</p><a class="back-top" href="#top">VOLVER ARRIBA <span>↑</span></a></div><div class="footer-bottom"><span>© <span id="year">2026</span> Sushi Bites. Hecho con buen gusto.</span><nav aria-label="Enlaces del pie"><a href="menu.html">Menú</a><a href="ubicaciones.html">Ubicaciones</a><a href="nosotros.html">Nosotros</a><a href="preguntas.html">Preguntas</a><a href="colaboraciones.html">Colaboraciones</a></nav><span class="demo-note">Fusiones Nikkei · Ehomakis · Emperadores</span></div></footer>
+
+  <dialog class="cart-dialog" aria-labelledby="cart-title">
+    <div class="cart-header"><div><span class="eyebrow">BUENA ELECCIÓN</span><h2 id="cart-title">Tu próximo <em>antojo.</em></h2></div><button class="icon-button" data-close-cart aria-label="Cerrar pedido"><svg><use href="#i-close"/></svg></button></div>
+    <div class="cart-content">
+      <div class="cart-body" id="cart-items"></div>
+      <form class="cart-checkout" id="cart-checkout" hidden>
+        <fieldset class="order-method"><legend><span>01</span> ¿Cómo quieres tu pedido?</legend><div class="order-method-options"><label><input type="radio" name="fulfillment" value="delivery" required><span>Delivery<small>Lo llevamos a tu dirección</small></span></label><label><input type="radio" name="fulfillment" value="pickup" required><span>Para recoger<small>Pasas por la sucursal</small></span></label></div></fieldset>
+        <div class="order-field"><label for="order-branch"><span class="checkout-step">02</span> ¿De qué sucursal?</label><select id="order-branch" name="branch" required aria-describedby="order-branch-info"><option value="">Elige una sucursal</option></select><p id="order-branch-info" class="order-field-hint">Tu pedido irá al WhatsApp de la sucursal que elijas.</p></div>
+        <fieldset class="delivery-fields" id="delivery-fields" hidden disabled>
+          <legend><span>03</span> ¿Dónde lo entregamos?</legend>
+          <div class="delivery-map-heading"><span>Marca tu ubicación <span class="required-mark">*</span></span><button type="button" id="locate-delivery">⌖ Usar mi ubicación</button></div>
+          <p class="delivery-map-help" id="delivery-map-help">Toca el mapa para colocar el pin. Puedes arrastrarlo para ajustar el punto.<span class="sr-only">Con el teclado, mueve el mapa con las flechas y pulsa Enter para marcar su centro.</span></p>
+          <div id="delivery-map" class="delivery-map" role="region" aria-label="Mapa para seleccionar la ubicación de entrega" aria-describedby="delivery-map-help delivery-map-status"></div>
+          <p class="delivery-map-network" id="delivery-map-network" hidden>El mapa no ha cargado. Revisa tu conexión, vuelve a intentar o usa tu ubicación actual.</p>
+          <button type="button" id="retry-delivery-map" class="retry-delivery-map" hidden>Volver a cargar el mapa</button>
+          <div class="delivery-point-actions"><a id="delivery-point-link" target="_blank" rel="noopener noreferrer" hidden>Ver punto seleccionado ↗</a><button type="button" id="clear-delivery-point" hidden>Quitar punto</button></div>
+          <p class="delivery-map-status" id="delivery-map-status" role="status" aria-live="polite">Selecciona en el mapa el lugar donde recibirás tu pedido.</p>
+          <label for="delivery-address">Dirección de entrega <span class="required-mark">*</span></label><textarea id="delivery-address" name="address" rows="2" maxlength="350" autocomplete="street-address" placeholder="Zona, calle, número, edificio o departamento…"></textarea>
+          <label for="delivery-reference">Referencia para llegar <span class="optional-label">(opcional)</span></label><input id="delivery-reference" name="reference" maxlength="250" placeholder="Portón, piso o un punto cercano">
+        </fieldset>
+        <label class="order-notes-label" for="order-notes">¿Algún detalle para tu pedido?</label><textarea id="order-notes" name="notes" maxlength="500" rows="2" placeholder="Sin picante, salsa aparte…"></textarea>
+        <div class="cart-total"><span>Subtotal de productos</span><strong id="cart-total">Bs 0</strong></div><p class="cart-delivery-note" id="order-cost-note">Disponibilidad y total final por confirmar con la sucursal.</p>
+        <button type="submit" class="button checkout-button" id="send-order">Pedir por WhatsApp <svg><use href="#i-arrow"/></svg></button>
+        <button type="button" class="copy-order-button" id="copy-order">Copiar resumen <svg><use href="#i-copy"/></svg></button>
+        <p class="checkout-help">Se abrirá el chat de la sucursal con tu pedido. Revisa el mensaje y pulsa Enviar en WhatsApp.</p>
+        <div class="whatsapp-ready" id="whatsapp-ready" hidden><p id="whatsapp-status" role="status" aria-live="polite"></p><a id="whatsapp-order-link" target="_blank" rel="noopener noreferrer">Abrir el chat de la sucursal ↗</a></div>
+        <div id="copy-fallback" hidden><label for="order-summary">Copia este resumen:</label><textarea id="order-summary" readonly rows="7"></textarea></div>
+      </form>
+    </div>
+  </dialog>
+  <dialog class="product-dialog" aria-labelledby="product-title"><button class="icon-button product-close" data-close-product aria-label="Cerrar detalles"><svg><use href="#i-close"/></svg></button><div id="product-detail"></div></dialog>
+  <div class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

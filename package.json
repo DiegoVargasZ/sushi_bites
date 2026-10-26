@@ -1,0 +1,12 @@
+{
+  "name": "sushi-bites",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page de Sushi Bites, sin dependencias.",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "check": "node --check dist/menu-data.js && node --check dist/order-data.js && node --check dist/delivery-map.js && node --check dist/app.js && node --check dist/assets/sushi-material-atlas.js && node --check dist/sushi-3d.js && node --check dist/collaborations.js && node scripts/check.mjs",
+    "build": "node scripts/build-pages.mjs && npm run check"
+  }
+}
